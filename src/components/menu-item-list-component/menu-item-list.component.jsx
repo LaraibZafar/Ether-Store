@@ -23,13 +23,13 @@ class MenuItemList extends React.Component {
           id: 3,
         },
         {
-          title: "womens",
+          title: "women",
           imageUrl: "https://i.ibb.co/GCCdy8t/womens.png",
           size: "large",
           id: 4,
         },
         {
-          title: "mens",
+          title: "men",
           imageUrl: "https://i.ibb.co/R70vBrQ/men.png",
           size: "large",
           id: 5,
@@ -41,8 +41,8 @@ class MenuItemList extends React.Component {
   render() {
     return (
       <div className="menu-item-list">
-        {this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem title={title} imageUrl={imageUrl} key={id} size={size} />
+        {this.state.sections.map(({ id, ...sectionProps }) => (
+          <MenuItem key={id} {...sectionProps} />
         ))}
       </div>
     );

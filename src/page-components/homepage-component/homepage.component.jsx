@@ -1,7 +1,9 @@
 import React from "react";
 import MenuItemList from "../../components/menu-item-list-component/menu-item-list.component";
 import "./homepage.styles.scss";
-const HomePage = () => (
+import { Link } from "react-router-dom";
+
+const HomePage = (props) => (
   <div className="homepage">
     <MenuItemList />
   </div>
