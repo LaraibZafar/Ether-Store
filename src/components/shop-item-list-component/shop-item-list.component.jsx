@@ -1,11 +1,14 @@
 import React from "react";
 import "./shop-item-list.styles.scss";
+import ShopItem from "../shop-item-component/shop-item.component";
 
-const ShopItemList = ({ items, id }) => (
+const ShopItemList = ({ items }) => (
   <div className="shop-item-list">
-    {items.map((item) => (
-      <div></div>
-    ))}
+    {items
+      .filter((items, index) => index < 4)
+      .map(({ id, ...otherItemVars }) => (
+        <ShopItem key={id} {...otherItemVars} />
+      ))}
   </div>
 );
 

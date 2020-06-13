@@ -1,0 +1,19 @@
+.shop-item {
+  width: 240px;
+  height: 300px;
+  margin: 5px 10px;
+}
+
+.background-Image {
+  width: 100%;
+  height: 90%;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 5px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bolder;
+}
