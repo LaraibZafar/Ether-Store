@@ -1,0 +1,26 @@
+.header-container {
+  padding: 25px;
+  margin: 0px 15px 40px;
+  height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .logo-svg {
+    height: 70px;
+    width: 70px;
+  }
+  .nav-buttons {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    font-size: 14px;
+    margin-right: 40px;
+
+    .button {
+      padding: 15px;
+    }
+  }
+}
