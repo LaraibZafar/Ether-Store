@@ -1,0 +1,16 @@
+.custom-button {
+  background-color: black;
+  color: white;
+  border: none;
+  min-width: 140px;
+  min-height: 50px;
+  font-size: 16px;
+  font-weight: bolder;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+  }
+}

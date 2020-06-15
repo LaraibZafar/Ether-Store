@@ -1,11 +1,18 @@
+* {
+  font-family: "Open Sans Condensed", sans-serif;
+}
+
 body {
   margin: 0;
-  font-family: "Open Sans Condensed", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   padding: 20px 70px;
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
-
+body::-webkit-scrollbar {
+  display: none; /*Safari & chrome*/
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
