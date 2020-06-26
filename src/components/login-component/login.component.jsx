@@ -37,6 +37,7 @@ class Login extends React.Component {
           <Form
             name="email"
             type="email"
+            label="Email"
             handleChange={this.handleChange}
             value={this.state.email}
             required
@@ -44,6 +45,7 @@ class Login extends React.Component {
           <Form
             name="password"
             type="password"
+            label="Password"
             handleChange={this.handleChange}
             onKeyDown={this.onKeyDown}
             value={this.state.password}

@@ -29,7 +29,7 @@ class App extends React.Component {
                 ...snapshot.data(),
               },
             },
-            () => console.log("User Logged In")
+            () => console.log(`${this.state.currentUser.displayName} Logged In`)
           );
         });
       } else {

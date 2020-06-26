@@ -32,12 +32,12 @@ class Signup extends React.Component {
           password
         );
         await createUserDocument(user, { displayName });
-        this.state = {
+        this.setState({
           displayName: "",
           email: "",
           password: "",
           confirmPassword: "",
-        };
+        });
       } catch (error) {
         console.log("Error while User SignUp", error);
       }
@@ -46,15 +46,16 @@ class Signup extends React.Component {
 
   render() {
     return (
-      <div className="sign-up">
+      <div className="signup-container">
         <div className="signup-text">
-          <h1>ALREADY HAVE AN ACCOUNT?</h1>
-          <span>SIGN IN WITH YOUR EMAIL AND PASSWORD</span>
+          <h1>NEW HERE?</h1>
+          <span>SIGN UP WITH YOUR EMAIL AND PASSWORD</span>
         </div>
         <form onSubmit={this.handleSubmit}>
           <Form
             name="displayName"
             type="text"
+            label="Display Name"
             handleChange={this.handleChange}
             value={this.state.displayName}
             required
@@ -62,6 +63,7 @@ class Signup extends React.Component {
           <Form
             name="email"
             type="email"
+            label="Email"
             handleChange={this.handleChange}
             value={this.state.email}
             required
@@ -69,6 +71,7 @@ class Signup extends React.Component {
           <Form
             name="password"
             type="password"
+            label="Password"
             handleChange={this.handleChange}
             value={this.state.password}
             required
@@ -76,6 +79,7 @@ class Signup extends React.Component {
           <Form
             name="confirmPassword"
             type="password"
+            label="Confirm Password"
             handleChange={this.handleChange}
             value={this.state.confirmPassword}
             required

@@ -1,13 +1,13 @@
 import React from "react";
 import "./form.styles.scss";
 
-const Form = ({ handleChange, name, ...otherProps }) => (
+const Form = ({ handleChange, name, label, ...otherProps }) => (
   <div className="Form-Container">
     {name ? (
       <label
         className={`${otherProps.value.length ? "User-Input" : ""} Form-Label`}
       >
-        {name}
+        {label}
       </label>
     ) : null}
     <input
