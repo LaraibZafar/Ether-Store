@@ -35,6 +35,7 @@ export const createUserDocument = async (userAuth, otherAttributes) => {
           displayName,
           email,
           dateCreated,
+          ...otherAttributes,
         });
       } catch (error) {
         console.log(
