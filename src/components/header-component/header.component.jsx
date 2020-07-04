@@ -3,6 +3,7 @@ import "./header.styles.scss";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/icons8-ethereum.svg";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 const Header = ({ currentUser }) => (
   <div className="header-container">
     <Link to="/" className="logo">
@@ -27,4 +28,11 @@ const Header = ({ currentUser }) => (
     </div>
   </div>
 );
-export default Header;
+
+const mapStateToProps = (state) => ({
+  //the state that Im getting right here is the root reducer
+  currentUser: state.user.currentUser,
+  //rootReducer.userReducer.currentUser Attribute
+});
+
+export default connect(mapStateToProps)(Header);

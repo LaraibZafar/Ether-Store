@@ -3,6 +3,7 @@ const INITIAL_STATE = {
 };
 
 const userReducer = (currentState = INITIAL_STATE, action) => {
+  console.log(action.payload);
   switch (action.type) {
     case "SET_CURRENT_USER":
       return {
@@ -13,3 +14,5 @@ const userReducer = (currentState = INITIAL_STATE, action) => {
       return currentState;
   }
 };
+
+export default userReducer;

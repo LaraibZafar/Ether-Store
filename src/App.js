@@ -6,36 +6,26 @@ import Header from "./components/header-component/header.component.jsx";
 import LoginSignUpPage from "./page-components/Login-Signup-page-component/Login-Signup-page.component.jsx";
 import { Route, Switch } from "react-router-dom";
 import { auth, createUserDocument } from "./firebase/firebase.utils";
-class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      currentUser: "",
-    };
-  }
+import { setCurrentUser } from "./redux/user/user.actions";
+import { connect } from "react-redux";
 
+class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
+    const { setCurrentUser } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth != null) {
         const userReference = await createUserDocument(userAuth);
         //this.setState({ currentUser: userAuth });
         userReference.onSnapshot((snapshot) => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapshot.id,
-                ...snapshot.data(),
-              },
-            },
-            () => console.log(`${this.state.currentUser.displayName} Logged In`)
-          );
+          setCurrentUser({
+            id: snapshot.id,
+            ...snapshot.data(),
+          });
         });
       } else {
-        this.setState({ currentUser: null }, () =>
-          console.log("User Not Found")
-        );
+        setCurrentUser(null); //userAuth== NULL
       }
     });
   }
@@ -51,7 +41,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Header currentUser={this.state.currentUser} />
+        <Header />
         <Switch>
           <Route exact path="/" component={HomePage} />
           <Route exact path="/shop" component={ShopPage} />
@@ -62,4 +52,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentUser: (user) => dispatch(setCurrentUser(user)), //dispatch to each reducer the object returned by setCurrentUser
+});
+
+export default connect(null, mapDispatchToProps)(App);
