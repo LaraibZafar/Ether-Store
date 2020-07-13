@@ -7,7 +7,7 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import CartDropDown from "../cart-dropdown-component/cart-dropdown.component";
 
-const Header = ({ currentUser }) => (
+const Header = ({ currentUser, cartToggle }) => (
   <div className="header-container">
     <Link to="/" className="logo">
       <Logo className="logo-svg" />
@@ -30,13 +30,14 @@ const Header = ({ currentUser }) => (
       )}
       <CartIcon className="button" />
     </div>
-    <CartDropDown></CartDropDown>
+    {cartToggle ? <CartDropDown></CartDropDown> : null}
   </div>
 );
 
 const mapStateToProps = (state) => ({
   //the state that Im getting right here is the root reducer
   currentUser: state.user.currentUser,
+  cartToggle: state.cart.cartToggle,
   //rootReducer.userReducer.currentUser Attribute
 });
 

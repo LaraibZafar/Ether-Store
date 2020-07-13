@@ -1,6 +1,6 @@
 .shop-item {
-  width: 240px;
-  height: 300px;
+  width: 260px;
+  height: 345px;
   margin: 5px 5px;
 }
 
@@ -10,7 +10,23 @@
   background-size: cover;
   background-position: center;
   margin-bottom: 5px;
-  border: 1px solid black;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  .custom-button {
+    bottom: 20px;
+    opacity: 80%;
+    width: 80%;
+    display: none;
+  }
+  &:hover {
+    opacity: 0.8;
+    .custom-button {
+      display: flex;
+      opacity: 0.8;
+    }
+  }
 }
 
 .content {
