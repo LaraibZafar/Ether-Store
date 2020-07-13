@@ -1,9 +1,12 @@
 import React from "react";
 import "./header.styles.scss";
+import CartIcon from "../shopping-cart/shopping-cart.component";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/icons8-ethereum.svg";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
+import CartDropDown from "../cart-dropdown-component/cart-dropdown.component";
+
 const Header = ({ currentUser }) => (
   <div className="header-container">
     <Link to="/" className="logo">
@@ -25,7 +28,9 @@ const Header = ({ currentUser }) => (
           <h2>SIGN IN</h2>
         </Link>
       )}
+      <CartIcon className="button" />
     </div>
+    <CartDropDown></CartDropDown>
   </div>
 );
 

@@ -1,6 +1,6 @@
 .header-container {
   padding: 25px;
-  margin: 0px 15px 20px;
+  margin: 0px 35px 15px 0px;
   height: 70px;
   width: 100%;
   display: flex;
@@ -10,6 +10,7 @@
   .logo-svg {
     height: 70px;
     width: 70px;
+    padding-right: 100px;
   }
   .nav-buttons {
     width: 50%;
@@ -19,12 +20,15 @@
     justify-content: flex-end;
     align-items: center;
     font-size: 14px;
-    margin-right: 40px;
+    margin-right: 60px;
 
     .button {
       padding: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       cursor: pointer;
-      min-width: 55px;
+      min-width: fit-content;
     }
   }
 }
