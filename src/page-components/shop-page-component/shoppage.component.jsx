@@ -8,16 +8,16 @@ class ShopPage extends React.Component {
     this.state = {
       collections: ShopData,
     };
-    console.log(this.state.collections.length);
   }
 
   render() {
+    const { collections } = this.state;
     return (
       <div className="Shop-Page">
-        {this.state.collections.map(({ title, items, id }) => (
-          <div>
+        {collections.map(({ id, title, items }) => (
+          <div key={id}>
             <h1>{title}</h1>
-            <ShopItemList key={items.id} items={items} />
+            <ShopItemList id={id} items={items} />
           </div>
         ))}
       </div>

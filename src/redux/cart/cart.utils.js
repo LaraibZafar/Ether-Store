@@ -1,15 +1,14 @@
 export const addItems = (cartItems, newItem) => {
-  let foundMatch = cartItems.find((cartItem) => cartItem.id === newItem.id);
-
+  const foundMatch = cartItems.find(
+    (cartItem) => cartItem.name === newItem.name
+  );
   if (foundMatch) {
     return cartItems.map((cartItem) =>
-      cartItem.id === newItem.id
-        ? { ...cartItems, ...cartItem, quantity: cartItem.quantity + 1 }
+      cartItem.name === newItem.name
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : cartItem
     );
-  }
-
-  if (!foundMatch) {
+  } else {
     return [...cartItems, { ...newItem, quantity: 1 }];
   }
 };
