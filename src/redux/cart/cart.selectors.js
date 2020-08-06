@@ -4,6 +4,12 @@ import { createSelector } from "reselect";
 const selectCart = (state) => state.cart;
 //output Selector
 //createSelector method makes this function memoized
+
+export const cartHiddenStatus = createSelector(
+  [selectCart],
+  (cart) => cart.cartToggle
+);
+
 export const selectCartItems = createSelector(
   [selectCart],
   (cart) => cart.cartItems

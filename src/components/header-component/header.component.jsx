@@ -6,6 +6,10 @@ import { ReactComponent as Logo } from "../../assets/icons8-ethereum.svg";
 import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux";
 import CartDropDown from "../cart-dropdown-component/cart-dropdown.component";
+import { cartHiddenStatus } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selectors";
+import { createStructuredSelector } from "reselect";
+import { createStore } from "redux";
 
 const Header = ({ currentUser, cartToggle }) => (
   <div className="header-container">
@@ -34,11 +38,9 @@ const Header = ({ currentUser, cartToggle }) => (
   </div>
 );
 
-const mapStateToProps = (state) => ({
-  //the state that Im getting right here is the root reducer
-  currentUser: state.user.currentUser,
-  cartToggle: state.cart.cartToggle,
-  //rootReducer.userReducer.currentUser Attribute
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  cartToggle: cartHiddenStatus,
 });
 
 export default connect(mapStateToProps)(Header);
