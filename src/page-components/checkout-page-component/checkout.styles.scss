@@ -1,0 +1,19 @@
+.checkout-page {
+  width: 55%;
+  min-height: 90vh;
+
+  margin: 40px auto;
+
+  .checkout-header {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+
+    .table-labels {
+      font-weight: bold;
+      font-size: 18px;
+    }
+  }
+}
