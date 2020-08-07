@@ -5,7 +5,7 @@ const selectCart = (state) => state.cart;
 //output Selector
 //createSelector method makes this function memoized
 
-export const cartHiddenStatus = createSelector(
+export const selectCartHiddenStatus = createSelector(
   [selectCart],
   (cart) => cart.cartToggle
 );
