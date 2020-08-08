@@ -9,7 +9,6 @@ import CartDropDown from "../cart-dropdown-component/cart-dropdown.component";
 import { selectCartHiddenStatus } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
-import { createStore } from "redux";
 
 const Header = ({ currentUser, cartToggle }) => (
   <div className="header-container">
