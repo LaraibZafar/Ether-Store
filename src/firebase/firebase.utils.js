@@ -62,4 +62,20 @@ export const createCollectionAndDocuments = async (
   return await batch.commit();
 };
 
+export const transformShopDataCollection = (snap) => {
+  const transformedShopData = snap.docs.map((documentItem) => {
+    const { title, items } = documentItem.data();
+    return {
+      routeName: encodeURI(title.toLowerCase()),
+      id: documentItem.id,
+      title,
+      items,
+    };
+  });
+  return transformedShopData.reduce((accumulatedValue, shopItem) => {
+    accumulatedValue[shopItem.title.toLowerCase()] = shopItem;
+    return accumulatedValue;
+  }, {});
+};
+
 export default firebase;
