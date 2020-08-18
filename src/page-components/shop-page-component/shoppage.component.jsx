@@ -3,6 +3,9 @@ import "./shoppage.styles.scss";
 
 import { Route } from "react-router-dom";
 
+import { connect } from "react-redux";
+import { addShopData } from "../../redux/shop-item/shop-item.actions";
+
 import {
   firestore,
   transformShopDataCollection,
@@ -13,11 +16,14 @@ import CategoryPage from "../category-page-component/category-page.component";
 
 class ShopPage extends React.Component {
   unsubscribeFromSnapshot = null;
+
   componentDidMount() {
+    const { storeShopData } = this.props;
     const collectionRefernce = firestore.collection("Shop Data");
     collectionRefernce.onSnapshot(async (snap) => {
       const transformedData = transformShopDataCollection(snap);
       console.log(transformedData);
+      storeShopData(transformedData);
     });
   }
 
@@ -31,4 +37,8 @@ class ShopPage extends React.Component {
   }
 }
 
-export default ShopPage;
+const mapDispatchToProps = (dispatch) => ({
+  storeShopData: (shopData) => dispatch(addShopData(shopData)),
+});
+
+export default connect(null, mapDispatchToProps)(ShopPage);
