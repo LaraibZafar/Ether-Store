@@ -1,14 +1,23 @@
 import React from "react";
 import "./App.css";
+
 import HomePage from "./page-components/homepage-component/homepage.component";
 import ShopPage from "./page-components/shop-page-component/shoppage.component.jsx";
 import CheckoutPage from "./page-components/checkout-page-component/checkout.component.jsx";
 import Header from "./components/header-component/header.component.jsx";
 import LoginSignUpPage from "./page-components/Login-Signup-page-component/Login-Signup-page.component.jsx";
+
 import { Route, Switch, Redirect } from "react-router-dom";
-import { auth, createUserDocument } from "./firebase/firebase.utils";
-import { setCurrentUser } from "./redux/user/user.actions";
+
+import {
+  auth,
+  createUserDocument,
+  createCollectionAndDocuments,
+} from "./firebase/firebase.utils";
+
 import { connect } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
+import { selectShopDataArray } from "./redux/shop-item/shop-item.selector";
 import { selectCurrentUser } from "./redux/user/user.selectors";
 import { createStructuredSelector } from "reselect";
 
@@ -16,7 +25,7 @@ class App extends React.Component {
   unsubscribeFromAuth = null;
 
   componentDidMount() {
-    const { setCurrentUser } = this.props;
+    const { setCurrentUser, shopData } = this.props;
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth != null) {
         const userReference = await createUserDocument(userAuth);
@@ -31,6 +40,10 @@ class App extends React.Component {
         setCurrentUser(null); //userAuth== NULL
       }
     });
+    /*createCollectionAndDocuments(
+      "Shop Data",
+      shopData.map(({ title, items }) => ({ title, items }))
+    );*/
   }
 
   unsubscribeFromAuth() {
@@ -64,6 +77,7 @@ class App extends React.Component {
 
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
+  shopData: selectShopDataArray,
 });
 
 const mapDispatchToProps = (dispatch) => ({
