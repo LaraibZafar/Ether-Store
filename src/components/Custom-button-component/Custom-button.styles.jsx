@@ -15,9 +15,9 @@ const invertedButtonStyles = css`
   background-color: white;
   color: black;
   border: 2px solid black;
-  position: absolute;
   outline: none;
-
+  position: absolute;
+  top: 78%;
   &:hover {
     background-color: black;
     color: white;
@@ -28,6 +28,7 @@ const invertedButtonStyles = css`
 const googleButtonStyles = css`
   background-color: #4285f4;
   color: white;
+  border: none;
   outline: 1px solid #4285f4;
 
   &:hover {
@@ -47,7 +48,7 @@ const selectButtonStyle = (props) => {
 export const CustomButtonStyles = styled.button`
   width: 170px;
   min-width: 50px;
-  min-height: 55px;
+  height: 55px;
   font-size: 18px;
   font-weight: bolder;
   cursor: pointer;
