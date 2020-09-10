@@ -13,8 +13,13 @@ import {
 
 import ShopItemOverview from "../../components/shop-item-overview-component/shop-item-overview.component";
 import CategoryPage from "../category-page-component/category-page.component";
+import Spinner from "../../components/spinner-component/spinner.component";
+
+const ShopItemOverviewWithSpinner = Spinner(ShopItemOverview);
+const CategoryPageWithSpinner = Spinner(CategoryPage);
 
 class ShopPage extends React.Component {
+  state = { isLoading: true };
   unsubscribeFromSnapshot = null;
 
   componentDidMount() {
@@ -24,14 +29,33 @@ class ShopPage extends React.Component {
       const transformedData = transformShopDataCollection(snap);
       console.log(transformedData);
       storeShopData(transformedData);
+      this.setState({ isLoading: false });
     });
   }
 
   render() {
     return (
       <div className="Shop-Page">
-        <Route exact path={`/shop`} component={ShopItemOverview} />
-        <Route exact path={`/shop/:categoryid`} component={CategoryPage} />
+        <Route
+          exact
+          path={`/shop`}
+          render={(props) => (
+            <ShopItemOverviewWithSpinner
+              isLoading={this.state.isLoading}
+              {...props}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={`/shop/:categoryid`}
+          render={(props) => (
+            <CategoryPageWithSpinner
+              isLoading={this.state.isLoading}
+              {...props}
+            />
+          )}
+        />
       </div>
     );
   }

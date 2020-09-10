@@ -15,7 +15,6 @@ import {
   NavigationButtons,
   LogoImage,
   ButtonCart,
-  ButtonDiv,
   ButtonLink,
 } from "./header.styles";
 

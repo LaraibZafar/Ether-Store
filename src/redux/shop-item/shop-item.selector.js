@@ -9,8 +9,13 @@ export const selectShopData = createSelector(
 
 export const selectShopDataArray = createSelector(
   [selectShopData],
-  (shopItems) => Object.keys(shopItems).map((itemKeys) => shopItems[itemKeys])
+  (shopItems) =>
+    shopItems
+      ? Object.keys(shopItems).map((itemKeys) => shopItems[itemKeys])
+      : null
 );
 
 export const selectCategoryData = (categoryItem) =>
-  createSelector([selectShopData], (shopItems) => shopItems[categoryItem]);
+  createSelector([selectShopData], (shopItems) =>
+    shopItems ? shopItems[categoryItem] : null
+  );
