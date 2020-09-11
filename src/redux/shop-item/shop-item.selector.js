@@ -19,3 +19,13 @@ export const selectCategoryData = (categoryItem) =>
   createSelector([selectShopData], (shopItems) =>
     shopItems ? shopItems[categoryItem] : null
   );
+
+export const selectFetchingStatus = createSelector(
+  [selectShopItem],
+  (shop) => shop.isFetching
+);
+
+export const selectIsDataLoaded = createSelector(
+  [selectShopItem],
+  (shop) => !!shop.shopItems
+);

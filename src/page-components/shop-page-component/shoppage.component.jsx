@@ -4,12 +4,9 @@ import "./shoppage.styles.scss";
 import { Route } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { addShopData } from "../../redux/shop-item/shop-item.actions";
-
-import {
-  firestore,
-  transformShopDataCollection,
-} from "../../firebase/firebase.utils";
+import { fetchDataFromFirestore } from "../../redux/shop-item/shop-item.actions";
+import { createStructuredSelector } from "reselect";
+import { selectIsDataLoaded } from "../../redux/shop-item/shop-item.selector";
 
 import ShopItemOverview from "../../components/shop-item-overview-component/shop-item-overview.component";
 import CategoryPage from "../category-page-component/category-page.component";
@@ -19,41 +16,27 @@ const ShopItemOverviewWithSpinner = Spinner(ShopItemOverview);
 const CategoryPageWithSpinner = Spinner(CategoryPage);
 
 class ShopPage extends React.Component {
-  state = { isLoading: true };
-  unsubscribeFromSnapshot = null;
-
   componentDidMount() {
-    const { storeShopData } = this.props;
-    const collectionRefernce = firestore.collection("Shop Data");
-    collectionRefernce.onSnapshot(async (snap) => {
-      const transformedData = transformShopDataCollection(snap);
-      console.log(transformedData);
-      storeShopData(transformedData);
-      this.setState({ isLoading: false });
-    });
+    const { fetchDataFromFirestore } = this.props;
+    fetchDataFromFirestore();
   }
 
   render() {
+    const { isDataLoaded } = this.props;
     return (
       <div className="Shop-Page">
         <Route
           exact
           path={`/shop`}
           render={(props) => (
-            <ShopItemOverviewWithSpinner
-              isLoading={this.state.isLoading}
-              {...props}
-            />
+            <ShopItemOverviewWithSpinner isLoading={!isDataLoaded} {...props} />
           )}
         />
         <Route
           exact
           path={`/shop/:categoryid`}
           render={(props) => (
-            <CategoryPageWithSpinner
-              isLoading={this.state.isLoading}
-              {...props}
-            />
+            <CategoryPageWithSpinner isLoading={!isDataLoaded} {...props} />
           )}
         />
       </div>
@@ -61,8 +44,13 @@ class ShopPage extends React.Component {
   }
 }
 
+const mapStateToProps = () =>
+  createStructuredSelector({
+    isDataLoaded: selectIsDataLoaded,
+  });
+
 const mapDispatchToProps = (dispatch) => ({
-  storeShopData: (shopData) => dispatch(addShopData(shopData)),
+  fetchDataFromFirestore: () => dispatch(fetchDataFromFirestore()),
 });
 
-export default connect(null, mapDispatchToProps)(ShopPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
