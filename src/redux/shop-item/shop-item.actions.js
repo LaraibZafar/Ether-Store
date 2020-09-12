@@ -14,7 +14,7 @@ export const fetchDataSuccess = (shopData) => ({
   payload: shopData,
 });
 
-const fetchDataFailure = (errorMessage) => ({
+export const fetchDataFailure = (errorMessage) => ({
   type: shopActionTypes.FETCH_DATA_FAILURE,
   payload: errorMessage,
 });

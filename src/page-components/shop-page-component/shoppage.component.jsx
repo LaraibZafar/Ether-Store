@@ -4,7 +4,7 @@ import "./shoppage.styles.scss";
 import { Route } from "react-router-dom";
 
 import { connect } from "react-redux";
-import { fetchDataFromFirestore } from "../../redux/shop-item/shop-item.actions";
+import { fetchDataStart } from "../../redux/shop-item/shop-item.actions";
 import { createStructuredSelector } from "reselect";
 import { selectIsDataLoaded } from "../../redux/shop-item/shop-item.selector";
 
@@ -17,8 +17,8 @@ const CategoryPageWithSpinner = Spinner(CategoryPage);
 
 class ShopPage extends React.Component {
   componentDidMount() {
-    const { fetchDataFromFirestore } = this.props;
-    fetchDataFromFirestore();
+    const { fetchDataStart } = this.props;
+    fetchDataStart();
   }
 
   render() {
@@ -50,7 +50,7 @@ const mapStateToProps = () =>
   });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchDataFromFirestore: () => dispatch(fetchDataFromFirestore()),
+  fetchDataStart: () => dispatch(fetchDataStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
