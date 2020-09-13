@@ -5,6 +5,7 @@ import { persistStore } from "redux-persist";
 
 import createSagaMiddleware from "redux-saga";
 import { fetchDataFromFirestore } from "./shop-item/shop.sagas";
+import rootSaga from "./root-saga";
 //import thunk from "redux-thunk"; replacing THUNK with redux-saga
 
 const sagaMiddleware = createSagaMiddleware();
@@ -16,7 +17,7 @@ if (process.env.NODE_ENV === "development") {
 
 export const store = createStore(rootReducer, applyMiddleware(...middlewares));
 
-sagaMiddleware.run(fetchDataFromFirestore);
+sagaMiddleware.run(rootSaga);
 
 export const persistor = persistStore(store);
 

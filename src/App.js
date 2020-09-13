@@ -26,6 +26,7 @@ class App extends React.Component {
 
   componentDidMount() {
     const { setCurrentUser, shopData } = this.props;
+    /*
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth != null) {
         const userReference = await createUserDocument(userAuth);

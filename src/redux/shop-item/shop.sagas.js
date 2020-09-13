@@ -1,4 +1,4 @@
-import { takeEvery, call, put } from "redux-saga/effects";
+import { takeLatest, call, put } from "redux-saga/effects";
 
 import { shopActionTypes } from "./shop-item.types";
 import { fetchDataSuccess, fetchDataFailure } from "./shop-item.actions";
@@ -9,7 +9,7 @@ import {
 } from "../../firebase/firebase.utils";
 
 export function* fetchDataStart() {
-  yield takeEvery(shopActionTypes.FETCH_DATA_START, fetchDataFromFirestore);
+  yield takeLatest(shopActionTypes.FETCH_DATA_START, fetchDataFromFirestore);
 }
 
 export function* fetchDataFromFirestore() {
