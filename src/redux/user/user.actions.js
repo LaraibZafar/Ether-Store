@@ -18,8 +18,9 @@ export const googleSignInFailure = (errorMessage) => ({
   payload: errorMessage,
 });
 
-export const emailSignInStart = () => ({
+export const emailSignInStart = (emailAndPassword) => ({
   type: userActionTypes.EMAIL_SIGNIN_START,
+  payload: emailAndPassword,
 });
 
 export const emailSignInSuccess = (userCredentials) => ({
@@ -30,4 +31,8 @@ export const emailSignInSuccess = (userCredentials) => ({
 export const emailSignInFailure = (errorMessage) => ({
   type: userActionTypes.EMAIL_SIGNIN_FAILURE,
   payload: errorMessage,
+});
+
+export const checkUserSession = () => ({
+  type: userActionTypes.CHECK_USER_SESSION,
 });
