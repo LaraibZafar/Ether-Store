@@ -6,6 +6,8 @@ import {
   googleSignInSuccess,
   emailSignInSuccess,
   emailSignInFailure,
+  signOutSuccess,
+  signOutFailure,
 } from "./user.actions";
 
 import {
@@ -25,6 +27,10 @@ export function* emailSignInStart() {
 
 export function* checkUserSession() {
   yield takeLatest(userActionTypes.CHECK_USER_SESSION, onUserSessionCheck);
+}
+
+export function* signOutStart() {
+  yield takeLatest(userActionTypes.SIGN_OUT_START, signOut);
 }
 
 export function* signInGoogle() {
@@ -70,10 +76,20 @@ export function* onUserSessionCheck() {
   }
 }
 
+export function* signOut() {
+  try {
+    yield auth.signOut();
+    yield put(signOutSuccess());
+  } catch (error) {
+    yield put(signOutFailure(error));
+  }
+}
+
 export function* userSagas() {
   yield all([
     call(googleSignInStart),
     call(emailSignInStart),
     call(checkUserSession),
+    call(signOutStart),
   ]);
 }
