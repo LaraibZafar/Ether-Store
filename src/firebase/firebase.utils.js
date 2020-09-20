@@ -22,17 +22,15 @@ export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
 export const signInWithGoogle = () => auth.signInWithPopup(googleProvider);
 
-export const createUserDocument = async (userAuth, otherAttributes) => {
-  console.log(userAuth);
-  if (userAuth) {
-    const userReference = firestore.doc(`users/${userAuth.uid}`); //gets us into that document or collection if you use .collection
+export const createUserDocument = async ({ user, otherAttributes }) => {
+  if (user) {
+    const userReference = firestore.doc(`users/${user.uid}`); //gets us into that document or collection if you use .collection
     const snapShot = await userReference.get();
     if (!snapShot.exists) {
-      const { displayName, email } = userAuth;
+      const { email } = user;
       const dateCreated = new Date();
       try {
         await userReference.set({
-          displayName,
           email,
           dateCreated,
           ...otherAttributes,
