@@ -4,7 +4,6 @@ import rootReducer from "./root-reducer";
 import { persistStore } from "redux-persist";
 
 import createSagaMiddleware from "redux-saga";
-import { fetchDataFromFirestore } from "./shop-item/shop.sagas";
 import rootSaga from "./root-saga";
 //import thunk from "redux-thunk"; replacing THUNK with redux-saga
 

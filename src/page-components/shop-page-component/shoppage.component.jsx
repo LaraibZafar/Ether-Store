@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./shoppage.styles.scss";
 
 import { Route } from "react-router-dom";
@@ -15,34 +15,30 @@ import Spinner from "../../components/spinner-component/spinner.component";
 const ShopItemOverviewWithSpinner = Spinner(ShopItemOverview);
 const CategoryPageWithSpinner = Spinner(CategoryPage);
 
-class ShopPage extends React.Component {
-  componentDidMount() {
-    const { fetchDataStart } = this.props;
+const ShopPage = ({ fetchDataStart, isDataLoaded }) => {
+  useEffect(() => {
     fetchDataStart();
-  }
+  }, [fetchDataStart]);
 
-  render() {
-    const { isDataLoaded } = this.props;
-    return (
-      <div className="Shop-Page">
-        <Route
-          exact
-          path={`/shop`}
-          render={(props) => (
-            <ShopItemOverviewWithSpinner isLoading={!isDataLoaded} {...props} />
-          )}
-        />
-        <Route
-          exact
-          path={`/shop/:categoryid`}
-          render={(props) => (
-            <CategoryPageWithSpinner isLoading={!isDataLoaded} {...props} />
-          )}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Shop-Page">
+      <Route
+        exact
+        path={`/shop`}
+        render={(props) => (
+          <ShopItemOverviewWithSpinner isLoading={!isDataLoaded} {...props} />
+        )}
+      />
+      <Route
+        exact
+        path={`/shop/:categoryid`}
+        render={(props) => (
+          <CategoryPageWithSpinner isLoading={!isDataLoaded} {...props} />
+        )}
+      />
+    </div>
+  );
+};
 
 const mapStateToProps = () =>
   createStructuredSelector({
