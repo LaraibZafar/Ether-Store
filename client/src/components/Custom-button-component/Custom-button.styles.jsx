@@ -56,4 +56,11 @@ export const CustomButtonStyles = styled.button`
   justify-content: center;
   align-items: center;
   ${selectButtonStyle}
+  @media screen and (max-width: 900px) {
+    display: block;
+    min-width: unset;
+    width: 70%;
+    min-width: fit-content;
+    margin: 0px;
+  }
 `;

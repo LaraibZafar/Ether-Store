@@ -2,6 +2,10 @@
   width: 250px;
   height: 365px;
   margin: 5px 5px;
+  @media screen and (max-width: 800px) {
+    width: 45vw;
+    height: 400px;
+  }
 }
 
 .background-Image {
