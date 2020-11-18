@@ -10,7 +10,10 @@
   overflow: hidden;
   background-color: black;
   margin: 5px;
-
+  @media screen and (max-width: 800px) {
+    height: 200px;
+    min-width: 140px;
+  }
   .background-Image {
     width: 100%;
     height: 100%;
@@ -21,12 +24,22 @@
 
   &.large {
     height: 400px;
+    @media screen and (max-width: 800px) {
+      height: 300px;
+      background-position: center top;
+      min-width: 350px;
+    }
+    @media screen and (max-width: 500px) {
+      height: 200px;
+      background-position: center top;
+      min-width: 300px;
+    }
   }
 
   &:hover {
     cursor: pointer;
     .content {
-      opacity: 0.9;
+      opacity: 0.85;
       transition: opacity 2s;
     }
     .background-Image {
@@ -45,7 +58,7 @@
     align-items: center;
     justify-content: center;
     background-color: white;
-    opacity: 0.65;
+    opacity: 0.55;
     position: absolute;
 
     .title {

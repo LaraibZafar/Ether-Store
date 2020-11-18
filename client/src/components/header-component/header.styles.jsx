@@ -11,22 +11,33 @@ const ButtonTag = css`
   justify-content: center;
   cursor: pointer;
   min-width: fit-content;
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+  }
 `;
 
 export const HeaderContainer = styled.div`
   padding: 15px 25px 15px 25px;
-  margin: 0px 35px 15px 0px;
+  margin: 15px 0px 25px 0px;
   height: 70px;
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media screen and (max-width: 800px) {
+    padding: 10px;
+    height: 60px;
+    margin: 20px 0px;
+  }
 `;
 
 export const LogoImage = styled(Logo)`
   height: 70px;
   width: 70px;
-  padding-right: 100px;
+  @media screen and (max-width: 800px) {
+    height: 50px;
+    width: 50px;
+  }
 `;
 
 export const NavigationButtons = styled.div`
@@ -37,7 +48,9 @@ export const NavigationButtons = styled.div`
   justify-content: flex-end;
   align-items: center;
   font-size: 14px;
-  margin-right: 60px;
+  @media screen and (max-width: 800px) {
+    font-size: 11px;
+  }
 `;
 
 export const ButtonLink = styled(Link)`
