@@ -2,6 +2,15 @@
   width: 55%;
   min-height: 90vh;
   margin: 40px auto;
+  @media screen and (max-width: 900px) {
+    width: 70%;
+    margin: 40px auto;
+    display: flex;
+    flex-direction: column;
+  }
+  @media screen and (max-width: 500px) {
+    width: 90%;
+  }
 
   .checkout-header {
     width: 100%;
@@ -11,6 +20,10 @@
     border-bottom: 1px solid darkgrey;
     border-collapse: separate;
     border-spacing: 3px;
+    @media screen and (max-width: 900px) {
+      width: 100%;
+      justify-content: space-around;
+    }
 
     .table-labels {
       width: 23%;
@@ -18,6 +31,13 @@
       font-size: 20px;
       display: flex;
       justify-content: center;
+      @media screen and (max-width: 900px) {
+        width: fit-content;
+        font-size: 20px;
+      }
+      @media screen and (max-width: 900px) {
+        font-size: 18px;
+      }
     }
   }
   .total {
@@ -34,5 +54,9 @@
   button {
     margin-top: 20px;
     margin-left: 90%;
+    @media screen and (max-width: 900px) {
+      margin-top: 20px;
+      margin-left: 0%;
+    }
   }
 }
