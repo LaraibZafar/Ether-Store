@@ -4,11 +4,14 @@
   width: 380px;
   @media screen and (max-width: 900px) {
     width: 80vw;
-    margin-top: 50px;
+    margin-top: 0px;
     margin-bottom: 30px;
   }
   @media screen and (max-width: 400px) {
-    margin-top: 20px;
+    margin-top: 60px;
+  }
+  @media screen and (max-width: 330px) {
+    margin-top: 120px;
   }
 
   //margin-left: 90px;

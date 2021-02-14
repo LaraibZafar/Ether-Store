@@ -7,11 +7,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  right: 100px;
-  top: 130px;
+  right: 65px;
+  top: 100px;
   background-color: white;
   z-index: 1;
   padding-bottom: 20px;
+  @media screen and (max-width: 800px) {
+    right: 10px;
+    top: 90px;
+  }
 
   .cart-items {
     display: flex;
